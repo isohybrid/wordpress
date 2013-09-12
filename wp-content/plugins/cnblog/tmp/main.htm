@@ -1,0 +1,103 @@
+<style>
+<!--
+
+table
+{
+	width: 100%;
+	line-height: 24px;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+td, th
+{
+	text-align: left;
+	background: #fff;
+	border: 1px solid #ddd;
+	padding: 6px;
+}
+
+th
+{
+	color: #fff;
+	background: #666;
+}
+
+#log
+{
+	border: 1px solid #ddd;
+	border-bottom: none;
+}
+
+#log p
+{
+	height: 36px;
+	color: #666;
+	line-height: 36px;
+	text-indent: 14px;
+	border-bottom: 1px solid #ddd;
+	margin: 0;
+	display: block;
+}
+
+.submit
+{
+	background: #eee;
+	text-indent: 102px;
+	padding: 10px 0;
+	margin: 0;
+}
+
+.submit input
+{
+	padding: 6px;
+}
+
+-->
+</style>
+
+<?php if (!empty($this->tips)) { ?>
+<div class="updated"><p><strong><?php _e($this->tips, 'mt_trans_domain' ); ?></strong></p></div>
+<?php } ?>
+
+<form action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>" method="post" name="upLoadXml" enctype="multipart/form-data">
+<div class="wrap">
+  <div class="icon32" id="icon-edit"></div>
+  <h2>
+    <?php echo __( 'Cnblogs数据转换', 'oscimp_trdom' );?>
+  </h2>
+  <table cellpadding="0" cellspacing="1" border="0">
+    <thead>
+      <tr>
+        <th>添加XML数据文件：</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <label for="upXml">上传数据文件：</label>
+          <input type="file" id="upXml" name="upXml" value="" />
+        </td>
+      </tr>
+      <tr>
+        <td class="submit">
+          <input type="submit" name="upload" value=" 确认上传数据 " class="button-secondary action" />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div id="log">
+    <?php
+    if (count($this->updata))
+    {
+    	foreach($this->updata as $data)
+        {
+        	echo '<p>'.$data.'</p>';
+        }
+    }
+    else echo '<p>没有添加任何数据</p>';
+    ?>
+  </div>
+</div>
+</form>
